@@ -8,6 +8,7 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import com.lnsf.model.User;
+import com.lnsf.utils.C3P0Utils;
 import com.lnsf.utils.DataAccess;
 
 public class dbutilsTest {
@@ -15,13 +16,14 @@ public class dbutilsTest {
     public void testSelect(){
         try {
         	//数据库连接
-        	Connection conn = DataAccess.getConnection();
+//        	Connection conn = DataAccess.getConnection();
         	//创建QueryRunner类对象
-            QueryRunner qr = new QueryRunner();
+            QueryRunner qr = new QueryRunner(C3P0Utils.getDataSource());
             //SQL语句
             String sql = "SELECT * FROM user";
             //查询到的结果保存在集合中
-            List<User> users = qr.query(conn,sql,new BeanListHandler<User>(User.class));
+//            List<User> users = qr.query(conn,sql,new BeanListHandler<User>(User.class));
+            List<User> users = qr.query(sql,new BeanListHandler<User>(User.class));
             //输出查询结果
             for (User user:users){
                 System.out.println(user);
