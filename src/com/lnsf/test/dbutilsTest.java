@@ -1,5 +1,6 @@
 package com.lnsf.test;
 
+import java.awt.AWTException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
@@ -13,7 +14,7 @@ import com.lnsf.utils.DataAccess;
 
 public class dbutilsTest {
 	
-    public void testSelect(){
+    public void testSelect() throws AWTException{
         try {
         	//数据库连接
 //        	Connection conn = DataAccess.getConnection();
@@ -25,6 +26,7 @@ public class dbutilsTest {
 //            List<User> users = qr.query(conn,sql,new BeanListHandler<User>(User.class));
             List<User> users = qr.query(sql,new BeanListHandler<User>(User.class));
             //输出查询结果
+            DataAccess.clear();
             for (User user:users){
                 System.out.println(user);
             }
@@ -33,7 +35,7 @@ public class dbutilsTest {
         }
     }
     
-    public static void main(String[] args) {
+    public static void main(String[] args) throws AWTException {
     	dbutilsTest du = new dbutilsTest();
 		du.testSelect();
 	}

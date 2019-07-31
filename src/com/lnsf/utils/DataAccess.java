@@ -1,5 +1,9 @@
 package com.lnsf.utils;
 
+import java.awt.AWTException;
+import java.awt.Robot;
+import java.awt.event.InputEvent;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -88,5 +92,15 @@ public class DataAccess {
 		}
 	}
 	
-
+	// 实现java控制台的清屏，仅适用eclipse
+	public static void clear() throws AWTException {
+		Robot r = new Robot();
+		r.mousePress(InputEvent.BUTTON3_MASK); // 按下鼠标右键
+		r.mouseRelease(InputEvent.BUTTON3_MASK); // 释放鼠标右键
+		r.keyPress(KeyEvent.VK_CONTROL); // 按下Ctrl键
+		r.keyPress(KeyEvent.VK_R); // 按下R键
+		r.keyRelease(KeyEvent.VK_R); // 释放R键
+		r.keyRelease(KeyEvent.VK_CONTROL); // 释放Ctrl键
+		r.delay(100);
+	}
 }
