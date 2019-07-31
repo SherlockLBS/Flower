@@ -14,7 +14,7 @@
     <property name="driverClass">com.mysql.jdbc.Driver</property>
 	<property name="jdbcUrl">jdbc:mysql://localhost:3306/flower</property>
 	<property name="user">root</property>
-	<property name="password">advent</property>
+	<property name="password">root</property>
   </named-config>
   
  
