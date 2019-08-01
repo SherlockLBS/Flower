@@ -170,4 +170,10 @@ public class userDetailDaoImpl implements IuserDetailDao {
 
 	}
 
+	@Override
+	public int updateByIdSelective(UserDetail ud) {
+		// TODO 自动生成的方法存根
+		return 0;
+	}
+
 }
