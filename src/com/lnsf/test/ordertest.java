@@ -4,18 +4,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.lnsf.dao.impl.orderDaoImpl;
-import com.lnsf.model.Order;
 import com.lnsf.model.Orders;
 import com.lnsf.service.impl.orderServiceImpl;
 
 public class ordertest {
 	public static void main(String[] args) {
 		// 查找
-//		List<Orders> l = new ArrayList<Orders>();
-//		orderDaoImpl od = new orderDaoImpl();
-//		l = od.all();
-//		for (Orders o : l)
-//			System.out.println(o.toString());
+		// List<Orders> l = new ArrayList<Orders>();
+		// orderDaoImpl od = new orderDaoImpl();
+		// l = od.all();
+		// for (Orders o : l)
+		// System.out.println(o.toString());
 
 		// 插入
 		// orderDaoImpl od = new orderDaoImpl();
@@ -29,8 +28,8 @@ public class ordertest {
 		// System.out.println(od.insert(o));
 
 		// 删除
-//		 orderDaoImpl od = new orderDaoImpl();
-//		 System.out.println(od.delete("2"));
+		// orderDaoImpl od = new orderDaoImpl();
+		// System.out.println(od.delete("2"));
 
 		// 修改
 		// orderDaoImpl od = new orderDaoImpl();
@@ -48,7 +47,7 @@ public class ordertest {
 		// orderDaoImpl od = new orderDaoImpl();
 		// System.out.println(od.selectorderbyid("1"));
 
-		// // 根据下单日期查找
+		// 根据下单日期查找
 		// List<Orders> l = new ArrayList<Orders>();
 		// orderDaoImpl od = new orderDaoImpl();
 		// l = od.selectByDate("2019/7/1", "2019/8/1");
@@ -61,20 +60,28 @@ public class ordertest {
 		// o.setOrder_id("8");
 		// o.setState(4);
 		// System.out.println(od.updateState(o));
-		
-		//根据状态返回信息
-//		List<Orders> l = new ArrayList<Orders>();
-//		orderDaoImpl od = new orderDaoImpl();
-//		l = od.orders(4);
-//		for (Orders o : l)
-//			System.out.println(o.toString());
-		
-		//自动生成订单号
-//		orderServiceImpl orderId = new orderServiceImpl();
-//		System.out.println(orderId.orderId());
-		
-		//删除订单
-		orderServiceImpl orderDelete = new orderServiceImpl();
-		orderDelete.delete("4");
+
+		// 根据状态返回信息
+		// List<Orders> l = new ArrayList<Orders>();
+		// orderDaoImpl od = new orderDaoImpl();
+		// l = od.orders(4);
+		// for (Orders o : l)
+		// System.out.println(o.toString());
+
+		// 自动生成订单号
+		// orderServiceImpl orderId = new orderServiceImpl();
+		// System.out.println(orderId.orderId());
+
+		// 删除订单
+		// orderServiceImpl orderDelete = new orderServiceImpl();
+		// orderDelete.delete("4");
+
+		// 根据下单日期查找
+		 List<Orders> l = new ArrayList<Orders>();
+		 orderServiceImpl od = new orderServiceImpl();
+		 l = od.selectByDate("2019/8/1", "2019/8/2");
+		 for (Orders o : l)
+		 System.out.println(o.toString());
+
 	}
 }
