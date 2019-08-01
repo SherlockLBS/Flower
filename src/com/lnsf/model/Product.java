@@ -1,7 +1,7 @@
-package com.lnsf.model;
+ï»¿package com.lnsf.model;
 
 public class Product {
-	
+
 	private int product_id;
 	private String product_name;
 	private float product_price;
@@ -68,7 +68,7 @@ public class Product {
 		this.flag = flag;
 	}
 	
-	//¹¹Ôì
+	//æ„é€ 
 	public Product() {
 		super();
 	}
@@ -90,15 +90,64 @@ public class Product {
 	//toString
 	@Override
 	public String toString() {
-		return "ÉÌÆ·±àºÅ£º" + product_id + "  ÉÌÆ·Ãû³Æ£º" + product_name 
-				+ "  ÉÌÆ·¼Û¸ñ£º" + product_price + "  ±¸×¢£º" + remark 
-				+ "  ÓÃÍ¾£º" + use_id + "  ¶ÔÏó£º" + object_id 
-				+ "  ½ÚÈÕ£º" + festival_id + "  Ö§/Êø£º" + som_id 
-				+ "  ±êÖ¾Î»£º" + flag;
+		return "å•†å“ç¼–å·ï¼š" + product_id + "  å•†å“åç§°ï¼š" + product_name 
+				+ "  å•†å“ä»·æ ¼ï¼š" + product_price + "  å¤‡æ³¨ï¼š" + remark 
+				+ "  ç”¨é€”ï¼š" + use_id + "  å¯¹è±¡ï¼š" + object_id 
+				+ "  èŠ‚æ—¥ï¼š" + festival_id + "  æ”¯/æŸï¼š" + som_id 
+				+ "  æ ‡å¿—ä½ï¼š" + flag;
 	}
 	
-	
-	
-	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + festival_id;
+		result = prime * result + flag;
+		result = prime * result + object_id;
+		result = prime * result + product_id;
+		result = prime * result
+				+ ((product_name == null) ? 0 : product_name.hashCode());
+		result = prime * result + Float.floatToIntBits(product_price);
+		result = prime * result + ((remark == null) ? 0 : remark.hashCode());
+		result = prime * result + som_id;
+		result = prime * result + use_id;
+		return result;
+	}
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Product other = (Product) obj;
+		if (festival_id != other.festival_id)
+			return false;
+		if (flag != other.flag)
+			return false;
+		if (object_id != other.object_id)
+			return false;
+		if (product_id != other.product_id)
+			return false;
+		if (product_name == null) {
+			if (other.product_name != null)
+				return false;
+		} else if (!product_name.equals(other.product_name))
+			return false;
+		if (Float.floatToIntBits(product_price) != Float
+				.floatToIntBits(other.product_price))
+			return false;
+		if (remark == null) {
+			if (other.remark != null)
+				return false;
+		} else if (!remark.equals(other.remark))
+			return false;
+		if (som_id != other.som_id)
+			return false;
+		if (use_id != other.use_id)
+			return false;
+		return true;
+	}
 
 }
