@@ -9,11 +9,40 @@ import java.util.List;
 
 import com.lnsf.dao.IorderDetailDao;
 import com.lnsf.model.OrderDetail;
+import com.lnsf.model.Orders;
 import com.lnsf.utils.DataAccess;
 
 public class orderDetailDaoImpl implements IorderDetailDao {
 
 	// 查找一条记录
+	public OrderDetail selectorderdetailbyid(int orderdetailid) {
+		String sql = "select * from orderDetail where orderDetail_id = ? and flag = 1";
+		OrderDetail od = new OrderDetail();
+		Connection conn = null;
+		PreparedStatement prepstat = null;
+		ResultSet rs = null;
+		try {
+			conn = DataAccess.getConnection();
+			prepstat = conn.prepareStatement(sql);
+			prepstat.setInt(1, orderdetailid);
+			rs = prepstat.executeQuery();
+			if (rs.next()) {
+				od.setOrderDetail_id(rs.getInt("orderDetail_id"));
+				od.setOrder_id(rs.getString("order_id"));
+				od.setProduct_id(rs.getInt("product_id"));
+				od.setProduct_count(rs.getInt("product_count"));
+				od.setFlag(rs.getInt("flag"));
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DataAccess.closeConnection(rs, prepstat, conn);
+		}
+		return od;
+	}
+	
+	//判断一条记录是否存在
 	public boolean selectOrderDetailById(int orderDetailId) {
 		String sql = "select * from orderDetail where orderDetail_id = ?";
 		boolean flag = false;
@@ -169,8 +198,34 @@ public class orderDetailDaoImpl implements IorderDetailDao {
 		} finally {
 			DataAccess.closeConnection(rs, prepstat, conn);// 关闭连接
 		}
-		return flag;// SQL语句执行成功返回true，失败返回false
-		
+		return flag;// SQL语句执行成功返回true，失败返回false	
+	}
+	
+	public OrderDetail selectOrderDetailByOrderIdAndProductId(String orderId, int productId){
+		OrderDetail od = new OrderDetail();
+		String sql = "select * from orderDetail where order_id = ? and product_id = ?";
+		Connection conn = null;
+		PreparedStatement prepstat = null;
+		ResultSet rs = null;
+		try {
+			conn = DataAccess.getConnection();
+			prepstat = conn.prepareStatement(sql);
+			prepstat.setString(1, orderId);
+			prepstat.setInt(2, productId);
+			rs = prepstat.executeQuery();
+			if (rs.next()) {
+				od.setOrderDetail_id(rs.getInt("orderDetail_id"));
+				od.setOrder_id(rs.getString("order_id"));
+				od.setProduct_id(rs.getInt("product_id"));
+				od.setProduct_count(rs.getInt("product_count"));
+				od.setFlag(rs.getInt("flag"));
+			} 
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DataAccess.closeConnection(rs, prepstat, conn);
+		}
+		return od;
 	}
 
 }
