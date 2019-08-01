@@ -9,11 +9,11 @@ import com.lnsf.model.Orders;
 public class ordertest {
 	public static void main(String[] args) {
 		// 查找
-		 List<Orders> l = new ArrayList<Orders>();
-		 orderDaoImpl od = new orderDaoImpl();
-		 l = od.all();
-		 for (Orders o : l)
-		 System.out.println(o.toString());
+//		 List<Orders> l = new ArrayList<Orders>();
+//		 orderDaoImpl od = new orderDaoImpl();
+//		 l = od.all();
+//		 for (Orders o : l)
+//		 System.out.println(o.toString());
 
 		// 插入
 		// orderDaoImpl od = new orderDaoImpl();
@@ -45,5 +45,13 @@ public class ordertest {
 		// 根据id查找
 		// orderDaoImpl od = new orderDaoImpl();
 		// System.out.println(od.selectorderbyid("1"));
+		
+		// 根据下单日期查找
+		List<Orders> l = new ArrayList<Orders>();
+		orderDaoImpl od = new orderDaoImpl();
+		l = od.selectByDate("2019/7/1", "2019/8/1");
+		for (Orders o : l)
+			System.out.println(o.toString());
+		
 	}
 }

@@ -160,4 +160,35 @@ public class orderDaoImpl implements IorderDao {
 		}
 		return o;
 	}
+
+	// 根据下单日期返回订单
+	public List<Orders> selectByDate(String startDate, String endDate) {
+		List<Orders> l = new ArrayList<Orders>();
+		String sql = "select * from orders where order_date between ? and ?";
+		Connection conn = null;
+		PreparedStatement prepstat = null;
+		ResultSet rs = null;
+		try {
+			conn = DataAccess.getConnection();
+			prepstat = conn.prepareStatement(sql);
+			prepstat.setString(1, startDate);
+			prepstat.setString(2, endDate);
+			rs = prepstat.executeQuery();
+			while (rs.next()) {
+				Orders o = new Orders(rs.getString("order_id"),
+						rs.getString("order_date"),
+						rs.getString("deliver_date"),
+						rs.getString("finish_date"), rs.getInt("con_id"),
+						rs.getFloat("order_price"), rs.getInt("state"),
+						rs.getInt("flag"));
+				l.add(o);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DataAccess.closeConnection(rs, prepstat, conn);
+		}
+		return l;
+	}
+
 }
