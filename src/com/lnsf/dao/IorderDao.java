@@ -22,11 +22,11 @@ public interface IorderDao {
 
 	// 根据下单日期查找
 	public List<Orders> selectByDate(String startDate, String endDate);
-
-	// 修改订单状态
+	
+	//修改订单状态
 	public boolean updateState(Orders o);
-
-	// 根据订单状态返回信息
+	
+	//根据订单状态返回信息
 	public List<Orders> orders(int state);
 
 }

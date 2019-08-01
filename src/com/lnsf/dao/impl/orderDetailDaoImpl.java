@@ -148,7 +148,29 @@ public class orderDetailDaoImpl implements IorderDetailDao {
 			DataAccess.closeConnection(rs, prepstat, conn);// 关闭连接
 		}
 		return flag;// SQL语句执行成功返回true，失败返回false
-
+	}
+	
+	//根据订单号删除订单详情
+	public boolean deleteOrderDetail(String orderId){
+		String sql = "update orderDetail set flag = 0 where order_id = ?";
+		boolean flag = false;
+		Connection conn = null;
+		PreparedStatement prepstat = null;
+		ResultSet rs = null;
+		try {
+			conn = DataAccess.getConnection();// 连接数据库
+			// 根据product_id确定记录
+			prepstat = conn.prepareStatement(sql);// SQL语句
+			prepstat.setString(1, orderId);
+			prepstat.executeUpdate();// 执行SQL语句
+			flag = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DataAccess.closeConnection(rs, prepstat, conn);// 关闭连接
+		}
+		return flag;// SQL语句执行成功返回true，失败返回false
+		
 	}
 
 }

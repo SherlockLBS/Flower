@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.lnsf.dao.impl.orderDaoImpl;
+import com.lnsf.model.Order;
 import com.lnsf.model.Orders;
 import com.lnsf.service.impl.orderServiceImpl;
 
@@ -28,8 +29,8 @@ public class ordertest {
 		// System.out.println(od.insert(o));
 
 		// 删除
-		// orderDaoImpl od = new orderDaoImpl();
-		// System.out.println(od.delete("207"));
+//		 orderDaoImpl od = new orderDaoImpl();
+//		 System.out.println(od.delete("2"));
 
 		// 修改
 		// orderDaoImpl od = new orderDaoImpl();
@@ -69,8 +70,11 @@ public class ordertest {
 //			System.out.println(o.toString());
 		
 		//自动生成订单号
-		orderServiceImpl orderId = new orderServiceImpl();
-		System.out.println(orderId.orderId());
-
+//		orderServiceImpl orderId = new orderServiceImpl();
+//		System.out.println(orderId.orderId());
+		
+		//删除订单
+		orderServiceImpl orderDelete = new orderServiceImpl();
+		orderDelete.delete("4");
 	}
 }

@@ -11,11 +11,11 @@ public class orderDetailTest {
 public static void main(String[] args) {
 		
 		//查找全部
-		orderDetailDaoImpl od = new orderDetailDaoImpl();
-		List<OrderDetail> list = new ArrayList<OrderDetail>();
-		list = od.all();
-		for(OrderDetail l:list)
-			System.out.println(l);
+//		orderDetailDaoImpl od = new orderDetailDaoImpl();
+//		List<OrderDetail> list = new ArrayList<OrderDetail>();
+//		list = od.all();
+//		for(OrderDetail l:list)
+//			System.out.println(l);
 		
 		//添加
 //		orderDetailDaoImpl od = new orderDetailDaoImpl();
@@ -45,6 +45,12 @@ public static void main(String[] args) {
 //		orderDetailDaoImpl od = new orderDetailDaoImpl();
 //		boolean flag = od.selectOrderDetailById(15);
 //		System.out.println(flag);
+	
+	
+	//根据orderId删除订单详情
+//	orderDetailDaoImpl od = new orderDetailDaoImpl();
+//	boolean flag = od.deleteOrderDetail("1");
+//	System.out.println(flag);
 		
 	}
 

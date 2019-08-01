@@ -20,4 +20,7 @@ public interface IorderDetailDao {
 
 	// 修改，返回布尔值
 	public boolean update(OrderDetail od);
+	
+	//根据订单号删除订单详情
+	public boolean deleteOrderDetail(String orderId);
 }
