@@ -2,15 +2,15 @@ package com.lnsf.model;
 
 public class UserDetail {
 	
-	private int userDetail_id;
+	private int userDetail_id = -1;
 	private String user_id;
 	private String user_tel;
 	private String user_sex;
-	private int user_point;
+	private int user_point = -1;
 	private String register_time;
-	private int login_count;
+	private int login_count = -1;
 	private String login_time;
-	private int flag;
+	private int flag = -1;
 	
 	//get/set
 	public int getUserDetail_id() {

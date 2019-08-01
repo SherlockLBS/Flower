@@ -9,10 +9,12 @@ import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanListHandler;
 
 import com.lnsf.model.User;
+import com.lnsf.model.UserDetail;
 import com.lnsf.utils.C3P0Utils;
 import com.lnsf.utils.DataAccess;
 
 public class dbutilsTest {
+	private int a = -1;
 	
     public void testSelect() throws AWTException{
         try {
@@ -37,7 +39,17 @@ public class dbutilsTest {
     
     public static void main(String[] args) throws AWTException {
     	dbutilsTest du = new dbutilsTest();
-		du.testSelect();
+//		du.testSelect();
+//    	du.setA(0);
+//    	System.out.println(du.getA());
+	}
+
+	public int getA() {
+		return a;
+	}
+
+	public void setA(int a) {
+		this.a = a;
 	}
 
 }

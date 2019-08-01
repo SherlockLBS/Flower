@@ -7,7 +7,11 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.commons.dbutils.QueryRunner;
+import org.apache.commons.dbutils.handlers.BeanListHandler;
+
 import com.lnsf.dao.IuserDetailDao;
+import com.lnsf.model.User;
 import com.lnsf.model.UserDetail;
 import com.lnsf.utils.DataAccess;
 
@@ -168,12 +172,6 @@ public class userDetailDaoImpl implements IuserDetailDao {
 		}
 		return flag;// SQL语句执行成功返回true，失败返回false
 
-	}
-
-	@Override
-	public int updateByIdSelective(UserDetail ud) {
-		// TODO 自动生成的方法存根
-		return 0;
 	}
 
 }

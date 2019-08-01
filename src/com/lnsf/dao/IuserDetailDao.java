@@ -16,8 +16,5 @@ public interface IuserDetailDao {
 		
 	//修改，返回布尔值
 	public boolean update(UserDetail ud);
-	
-	//根据主键修改指定列
-	public int updateByIdSelective(UserDetail ud);
 
 }
