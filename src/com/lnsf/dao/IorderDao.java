@@ -24,6 +24,6 @@ public interface IorderDao {
 	public List<Orders> selectByDate(String startDate, String endDate);
 	
 	//ÐÞ¸Ä¶©µ¥×´Ì¬
-	public void updateState(Orders o);
+	public boolean updateState(Orders o);
 
 }

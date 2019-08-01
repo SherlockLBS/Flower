@@ -192,7 +192,8 @@ public class orderDaoImpl implements IorderDao {
 	}
 	
 	//ÐÞ¸Ä¶©µ¥×´Ì¬
-	public void updateState(Orders o){
+	public boolean updateState(Orders o){
+		boolean flag = false;
 		String sql = "update orders set state = ? where order_id = ?";
 		Connection conn = null;
 		PreparedStatement prepstat = null;
@@ -201,13 +202,15 @@ public class orderDaoImpl implements IorderDao {
 			prepstat = conn.prepareStatement(sql);
 			prepstat.setInt(1, o.getState());
 			prepstat.setString(2, o.getOrder_id());
-			prepstat.executeQuery();
+			prepstat.executeUpdate();
+			flag = true;
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			DataAccess.closeConnection(prepstat, conn);
 		}
+		return flag;
 	}
 
 }
