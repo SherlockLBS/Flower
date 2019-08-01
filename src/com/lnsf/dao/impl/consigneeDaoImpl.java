@@ -26,8 +26,8 @@ public class consigneeDaoImpl implements IconsigneeDao {
 			rs = prepstat.executeQuery();
 			while (rs.next()) {
 				Consignee c = new Consignee(rs.getInt("con_id"),
-						rs.getString("user_id"), rs.getString("con_name"),
-						rs.getString("con_tel"), rs.getString("con_addr"),
+						rs.getString("con_name"), rs.getString("con_tel"),
+						rs.getString("con_addr"), rs.getString("user_id"),
 						rs.getInt("flag"));
 				l.add(c);
 			}
@@ -147,6 +147,33 @@ public class consigneeDaoImpl implements IconsigneeDao {
 			DataAccess.closeConnection(rs, prepstat, conn);
 		}
 		return c;
+	}
+	
+	//根据用户Id查找地址
+	@Override
+	public List<Consignee> selectaddrbyid(String userid) {
+		List<Consignee> l=new ArrayList<Consignee>();
+		String sql="select * from consignee where user_id= ?";
+		Connection conn=null;
+		PreparedStatement prepstat=null;
+		ResultSet rs=null;
+		try{
+			conn=DataAccess.getConnection();
+			prepstat=conn.prepareStatement(sql);
+			prepstat.setString(1, userid);
+			rs=prepstat.executeQuery();
+			while(rs.next()){
+				Consignee c=new Consignee(
+					rs.getInt("con_id"),rs.getString("con_name"),rs.getString("con_tel"),
+					rs.getString("con_addr"),rs.getString("user_id"),rs.getInt("flag"));
+				l.add(c);
+			}		
+		}catch(SQLException e){
+			e.printStackTrace();
+		}finally{
+			DataAccess.closeConnection(rs, prepstat, conn);
+		}
+		return l;
 	}
 
 }

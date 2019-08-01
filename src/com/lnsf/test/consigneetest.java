@@ -9,11 +9,11 @@ import com.lnsf.model.Consignee;
 public class consigneetest {
 	public static void main(String[] args) {
 		// 查找测试
-		 List<Consignee> l = new ArrayList<Consignee>();
-		 consigneeDaoImpl cd = new consigneeDaoImpl();
-		 l = cd.all();
-		 for (Consignee c : l)
-		 System.out.println(c.toString());
+		// List<Consignee> l = new ArrayList<Consignee>();
+		// consigneeDaoImpl cd = new consigneeDaoImpl();
+		// l = cd.all();
+		// for (Consignee c : l)
+		// System.out.println(c.toString());
 
 		// 插入测试
 		// consigneeDaoImpl cd=new consigneeDaoImpl();
@@ -39,8 +39,16 @@ public class consigneetest {
 		// System.out.println(cd.update(c));
 
 		// 根据id查找
-//		consigneeDaoImpl cd = new consigneeDaoImpl();
-//		System.out.println(cd.selectconsigneebyid(1));
+		// consigneeDaoImpl cd = new consigneeDaoImpl();
+		// System.out.println(cd.selectconsigneebyid(1));
+
+		// 根据id查找地址
+		List<Consignee> l = new ArrayList<Consignee>();
+		consigneeDaoImpl cd = new consigneeDaoImpl();
+		l = cd.selectaddrbyid("2017764509");
+		for (Consignee c : l)
+			System.out.println(c.getCon_addr());
+
 	}
 
 }

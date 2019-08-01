@@ -20,4 +20,7 @@ public interface IconsigneeDao {
 
 	//根据id查找
 	public Consignee selectconsigneebyid(int conid);
+	
+	//根据会员id查找地址
+	public List<Consignee> selectaddrbyid(String userid);
 }
