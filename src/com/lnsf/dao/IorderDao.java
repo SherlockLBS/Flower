@@ -22,5 +22,8 @@ public interface IorderDao {
 
 	// 根据下单日期查找
 	public List<Orders> selectByDate(String startDate, String endDate);
+	
+	//修改订单状态
+	public void updateState(Orders o);
 
 }

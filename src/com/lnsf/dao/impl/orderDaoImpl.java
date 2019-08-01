@@ -190,5 +190,24 @@ public class orderDaoImpl implements IorderDao {
 		}
 		return l;
 	}
+	
+	//ÐÞ¸Ä¶©µ¥×´Ì¬
+	public void updateState(Orders o){
+		String sql = "update orders set state = ? where order_id = ?";
+		Connection conn = null;
+		PreparedStatement prepstat = null;
+		try {
+			conn = DataAccess.getConnection();
+			prepstat = conn.prepareStatement(sql);
+			prepstat.setInt(1, o.getState());
+			prepstat.setString(2, o.getOrder_id());
+			prepstat.executeQuery();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DataAccess.closeConnection(prepstat, conn);
+		}
+	}
 
 }
