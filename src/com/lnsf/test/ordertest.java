@@ -9,11 +9,11 @@ import com.lnsf.model.Orders;
 public class ordertest {
 	public static void main(String[] args) {
 		// 查找
-		List<Orders> l = new ArrayList<Orders>();
-		orderDaoImpl od = new orderDaoImpl();
-		l = od.all();
-		for (Orders o : l)
-			System.out.println(o.toString());
+//		List<Orders> l = new ArrayList<Orders>();
+//		orderDaoImpl od = new orderDaoImpl();
+//		l = od.all();
+//		for (Orders o : l)
+//			System.out.println(o.toString());
 
 		// 插入
 		// orderDaoImpl od = new orderDaoImpl();
@@ -59,6 +59,13 @@ public class ordertest {
 		// o.setOrder_id("8");
 		// o.setState(4);
 		// System.out.println(od.updateState(o));
+		
+		//根据状态返回信息
+//		List<Orders> l = new ArrayList<Orders>();
+//		orderDaoImpl od = new orderDaoImpl();
+//		l = od.orders(4);
+//		for (Orders o : l)
+//			System.out.println(o.toString());
 
 	}
 }

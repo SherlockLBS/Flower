@@ -190,9 +190,9 @@ public class orderDaoImpl implements IorderDao {
 		}
 		return l;
 	}
-	
-	//修改订单状态
-	public boolean updateState(Orders o){
+
+	// 修改订单状态
+	public boolean updateState(Orders o) {
 		boolean flag = false;
 		String sql = "update orders set state = ? where order_id = ?";
 		Connection conn = null;
@@ -204,7 +204,7 @@ public class orderDaoImpl implements IorderDao {
 			prepstat.setString(2, o.getOrder_id());
 			prepstat.executeUpdate();
 			flag = true;
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -213,4 +213,33 @@ public class orderDaoImpl implements IorderDao {
 		return flag;
 	}
 
+	// 根据订单状态返回信息
+	public List<Orders> orders(int state) {
+		List<Orders> l = new ArrayList<Orders>();
+		String sql = "select * from orders where state = ? and flag = 1";
+		Connection conn = null;
+		PreparedStatement prepstat = null;
+		ResultSet rs = null;
+		try {
+			conn = DataAccess.getConnection();
+			prepstat = conn.prepareStatement(sql);
+			prepstat.setInt(1, state);
+			rs = prepstat.executeQuery();
+			while (rs.next()) {
+				Orders o = new Orders(rs.getString("order_id"),
+						rs.getString("order_date"),
+						rs.getString("deliver_date"),
+						rs.getString("finish_date"), rs.getInt("con_id"),
+						rs.getFloat("order_price"), rs.getInt("state"),
+						rs.getInt("flag"));
+				l.add(o);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DataAccess.closeConnection(rs, prepstat, conn);
+		}
+		return l;
+
+	}
 }
