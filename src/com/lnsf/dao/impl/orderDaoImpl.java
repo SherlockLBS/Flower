@@ -16,7 +16,7 @@ public class orderDaoImpl implements IorderDao {
 	// 查找所有记录，返回结果集至List
 	public List<Orders> all() {
 		List<Orders> l = new ArrayList<Orders>();
-		String sql = "select * from orders";
+		String sql = "select * from orders where flag = 1";
 		Connection conn = null;
 		PreparedStatement prepstat = null;
 		ResultSet rs = null;

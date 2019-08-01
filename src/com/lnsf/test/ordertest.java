@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.lnsf.dao.impl.orderDaoImpl;
 import com.lnsf.model.Orders;
+import com.lnsf.service.impl.orderServiceImpl;
 
 public class ordertest {
 	public static void main(String[] args) {
@@ -66,6 +67,10 @@ public class ordertest {
 //		l = od.orders(4);
 //		for (Orders o : l)
 //			System.out.println(o.toString());
+		
+		//自动生成订单号
+		orderServiceImpl orderId = new orderServiceImpl();
+		System.out.println(orderId.orderId());
 
 	}
 }
