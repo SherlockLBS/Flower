@@ -11,16 +11,17 @@ public class userDetailTest {
 	public static void main(String[] args) {
 		
 		//查找全部
-		userDetailDaoImpl ud = new userDetailDaoImpl();
-		List<UserDetail> list = new ArrayList<UserDetail>();
-		list = ud.all();
-		for(UserDetail l:list)
-			System.out.println(l);
-		
-		//查找是否存在
 //		userDetailDaoImpl ud = new userDetailDaoImpl();
-//		boolean flag = ud.selectUserDetailById(10);
-//		System.out.println(flag);
+//		List<UserDetail> list = new ArrayList<UserDetail>();
+//		list = ud.all();
+//		for(UserDetail l:list)
+//			System.out.println(l);
+		
+		//按id查找一条记录
+//		userDetailDaoImpl ud = new userDetailDaoImpl();
+//		UserDetail u=new UserDetail();
+//		 u=ud.selectUserDetailById(10);
+//		System.out.println(u);
 		
 		//添加
 //		userDetailDaoImpl ud = new userDetailDaoImpl();

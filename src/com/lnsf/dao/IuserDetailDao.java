@@ -16,5 +16,8 @@ public interface IuserDetailDao {
 		
 	//修改，返回布尔值
 	public boolean update(UserDetail ud);
+	
+	//根据ID查找该条记录
+	public UserDetail selectUserDetailById(int userDetailId);
 
 }

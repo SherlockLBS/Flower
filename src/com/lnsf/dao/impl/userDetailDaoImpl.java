@@ -17,10 +17,11 @@ import com.lnsf.utils.DataAccess;
 
 public class userDetailDaoImpl implements IuserDetailDao {
 	
-	//根据ID查找该条记录是否存在
-	public boolean selectUserDetailById(int userDetailId){
+	//根据ID查找该条记录
+	public UserDetail selectUserDetailById(int userDetailId){
 		String sql = "select * from userDetail where userDetail_id = ?";
 		boolean flag = false;
+		UserDetail ud=new UserDetail();
 		Connection conn = null;
 		PreparedStatement prepstat = null;
 		ResultSet rs = null;
@@ -30,16 +31,22 @@ public class userDetailDaoImpl implements IuserDetailDao {
 			prepstat.setInt(1, userDetailId);
 			rs = prepstat.executeQuery();
 			if (rs.next()) {
-				flag = true;
-			} else {
-				flag = false;
-			}
+				ud.setUserDetail_id(userDetailId);
+				ud.setUser_id(rs.getString("user_id"));
+				ud.setUser_tel(rs.getString("user_tel"));
+				ud.setUser_sex(rs.getString("user_sex"));
+				ud.setUser_point(rs.getInt("user_point"));
+				ud.setRegister_time(rs.getString("register_time"));
+				ud.setLogin_count(rs.getInt("login_count"));
+				ud.setLogin_time(rs.getString("login_time"));
+				ud.setFlag(rs.getInt("flag"));
+			} 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			DataAccess.closeConnection(rs, prepstat, conn);
 		}
-		return flag;	
+		return ud;	
 	}
 
 	// 查找所有记录，返回结果集至List
@@ -71,7 +78,6 @@ public class userDetailDaoImpl implements IuserDetailDao {
 		return l;// 返回最终得到的对象数组
 
 	}
-
 	// 增加，返回布尔值
 	public boolean insert(UserDetail ud) {
 		String sql = "insert into userDetail(user_id, user_tel, user_sex, register_time, "
