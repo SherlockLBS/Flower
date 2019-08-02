@@ -11,8 +11,9 @@ import com.lnsf.dao.impl.orderDaoImpl;
 import com.lnsf.dao.impl.orderDetailDaoImpl;
 import com.lnsf.model.OrderDetail;
 import com.lnsf.model.Orders;
+import com.lnsf.service.IorderService;
 
-public class orderServiceImpl {
+public class orderServiceImpl implements IorderService{
 
 	private IorderDao IorderDao = new orderDaoImpl();
 	private IorderDetailDao IorderDetailDao = new orderDetailDaoImpl();
@@ -49,15 +50,6 @@ public class orderServiceImpl {
 
 	// 插入订单
 	public void insert(Orders o) {
-		// 生成订单号
-		String orderId = orderId();
-		// 查询是否有该订单号
-		Orders OrderId = IorderDao.selectorderbyid(orderId);
-		while (OrderId != null) {
-			orderId = orderId();
-			OrderId = IorderDao.selectorderbyid(orderId);
-		}
-		o.setOrder_id(orderId);
 		IorderDao.insert(o);
 	}
 

@@ -6,8 +6,9 @@ import java.util.List;
 import com.lnsf.dao.impl.orderDetailDaoImpl;
 import com.lnsf.dao.IorderDetailDao;
 import com.lnsf.model.OrderDetail;
+import com.lnsf.service.IorderDetailService;
 
-public class orderDetailServiceImpl {
+public class orderDetailServiceImpl implements IorderDetailService{
 
 	private IorderDetailDao IorderDetailDao = new orderDetailDaoImpl();
 

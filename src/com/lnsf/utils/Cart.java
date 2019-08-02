@@ -2,15 +2,21 @@
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 
 import com.lnsf.dao.IflowerDao;
-import com.lnsf.dao.IproductDetailDao;
 import com.lnsf.dao.impl.flowerDaoImpl;
 import com.lnsf.dao.impl.productDetailDaoImpl;
 import com.lnsf.model.Flower;
+import com.lnsf.model.OrderDetail;
+import com.lnsf.model.Orders;
 import com.lnsf.model.ProductDetail;
+import com.lnsf.service.IorderDetailService;
+import com.lnsf.service.IorderService;
+import com.lnsf.service.impl.orderDetailServiceImpl;
+import com.lnsf.service.impl.orderServiceImpl;
 
 public class Cart {
 	private static List<CartProduct> l = new ArrayList<CartProduct>();
@@ -64,7 +70,7 @@ public class Cart {
 	}
 	
 	//结算
-	public static float bill(){
+	public static float bill(int con_id){
 		Connection conn = DataAccess.getConnection();
 		//计算金额
 		float paynum = 0;
@@ -92,9 +98,34 @@ public class Cart {
 			}
 			//提交订单
 			//插入订单表
-			
+			Orders o = new Orders();
+			java.util.Date date = new java.util.Date();
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			o.setOrder_date(sdf.format(date));
+			IorderService os = new orderServiceImpl();
+			// 生成订单号
+			String orderId = os.orderId();
+			// 查询是否有该订单号
+			Orders OrderId = os.selectorderbyid(orderId);
+			while (OrderId != null) {
+				orderId = os.orderId();
+				OrderId = os.selectorderbyid(orderId);
+			}
+			o.setOrder_id(orderId);
+			o.setCon_id(con_id);
+			o.setOrder_price(paynum);
+			o.setState(0);
+			o.setFlag(1);
+			os.insert(o);
 			//插入订单明细表
-			
+			for (CartProduct c : l) {
+				OrderDetail d = new OrderDetail();
+				d.setOrder_id(orderId);
+				d.setProduct_id(c.getProduct_id());
+				d.setProduct_count(c.getNum());
+				IorderDetailService ods = new orderDetailServiceImpl();
+				ods.insert(d);
+			}	
 			conn.setAutoCommit(true);
 			conn.commit();
 		}catch(SQLException e){
