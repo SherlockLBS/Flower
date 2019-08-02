@@ -5,6 +5,8 @@ import java.util.List;
 
 import com.lnsf.dao.impl.userDaoImpl;
 import com.lnsf.model.User;
+import com.lnsf.service.impl.userDetailServiceImpl;
+import com.lnsf.service.impl.userServiceImpl;
 
 public class userTest {
 
@@ -67,6 +69,39 @@ public class userTest {
 		// boolean flag = user.selectUserByName("梁诗欣");
 		// System.out.println(flag);
 
+//----------------------userService测试-----------------------------
+		//登录测试
+//		userServiceImpl ud=new userServiceImpl();
+//		ud.login("樊月", "2017764527");
+		
+		//注册
+//		userServiceImpl ud=new userServiceImpl();
+//		User u=new User();
+//		u.setUser_id("2017764546");
+//		u.setUser_name("樊月月");
+//		u.setPassword("2017764525");
+//		ud.insert(u);
+		
+		// 根据id修改密码
+//		userServiceImpl ud=new userServiceImpl();
+//		User u=new User();
+//		u.setUser_id("2017764550");
+//		u.setPassword("2017764526");
+//		ud.updatePassword(u);
+		
+		//根据用户名修改密码
+//		userServiceImpl ud=new userServiceImpl();
+//		User u=new User();
+//		u.setUser_name("小明");
+//		u.setPassword("2017764525");
+//		ud.updatePasswordByName(u);
+		
+		//修改用户名
+		// userServiceImpl ud=new userServiceImpl();
+		// User u=new User();
+		// u.setUser_name("nihao");
+		// u.setUser_id("2017764546");
+		// ud.updateusername(u);
 	}
 
 }
