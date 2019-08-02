@@ -17,6 +17,9 @@ public interface IproductDetailDao {
 
 	// 根据商品明细ID“删除”，返回布尔值
 	public boolean delete(int productDetailId);
+	
+	//根据商品id删除，返回布尔值
+	public boolean deletebyproductid(int productId);
 
 	// 修改，返回布尔值
 	public boolean update(ProductDetail pd);

@@ -171,5 +171,37 @@ public class productDaoImpl implements IproductDao {
 		return flag;// SQL语句执行成功返回true，失败返回false
 
 	}
+	
+	//根据商品名称查找记录
+		public Product selectProductByName(String productname ){
+			String sql="select * from product where product_name = ?";
+			Product p=new Product();
+			Connection conn = null;
+			PreparedStatement prepstat = null;
+			ResultSet rs = null;
+			try {
+				conn = DataAccess.getConnection();
+				prepstat = conn.prepareStatement(sql);
+				prepstat.setString(1, productname);
+				rs=prepstat.executeQuery();
+				while(rs.next()){
+					p.setProduct_id(rs.getInt("product_id"));
+					p.setProduct_name(rs.getString("product_name"));
+					p.setProduct_price(rs.getFloat("product_price"));
+					p.setRemark(rs.getString("remark"));
+					p.setUse_id(rs.getInt("use_id"));
+					p.setObject_id(rs.getInt("object_id"));
+					p.setFestival_id(rs.getInt("festival_id"));
+					p.setSom_id(rs.getInt("som_id"));
+					p.setFlag(rs.getInt("flag"));
+					}
+				}catch(SQLException e){
+					e.printStackTrace();
+				}finally{
+					DataAccess.closeConnection(rs, prepstat, conn);
+				}
+			return p;
+			
+		}
 
 }

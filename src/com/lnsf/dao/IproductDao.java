@@ -20,4 +20,7 @@ public interface IproductDao {
 
 	// 修改，返回布尔值
 	public boolean update(Product p);
+	
+	//根据商品名称查找记录
+	public Product selectProductByName(String productname);
 }

@@ -3,6 +3,7 @@ package com.lnsf.dao.impl;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLClientInfoException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -83,13 +84,20 @@ public class productDetailDaoImpl implements IproductDetailDao {
 		ResultSet rs = null;
 		try {
 			conn = DataAccess.getConnection();// 连接数据库
+			conn.setAutoCommit(false);// 设置非自动提交
 			prepstat = conn.prepareStatement(sql);// SQL语句
 			prepstat.setInt(1, product_id);
 			prepstat.setInt(2, flower_id);
 			prepstat.setInt(3, flower_num);
 			prepstat.executeUpdate();// 执行SQL语句
+			conn.commit();
 			flag = true;
 		} catch (SQLException e) {
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
 		} finally {
 			DataAccess.closeConnection(rs, prepstat, conn);// 关闭连接
@@ -150,6 +158,28 @@ public class productDetailDaoImpl implements IproductDetailDao {
 			DataAccess.closeConnection(rs, prepstat, conn);// 关闭连接
 		}
 		return flag;// SQL语句执行成功返回true，失败返回false
+	}
+
+	// 根据商品id删除，返回布尔值
+	public boolean deletebyproductid(int productId) {
+		String sql = "update productDetail set flag = 0 where product_id = ?";
+		boolean flag = false;
+		Connection conn = null;
+		PreparedStatement prepstat = null;
+		ResultSet rs = null;
+		try {
+			conn = DataAccess.getConnection();// 连接数据库
+			// 根据product_id确定记录
+			prepstat = conn.prepareStatement(sql);// SQL语句
+			prepstat.setInt(1, productId);
+			prepstat.executeUpdate();// 执行SQL语句
+			flag = true;
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			DataAccess.closeConnection(rs, prepstat, conn);// 关闭连接
+		}
+		return flag;
 	}
 
 }
